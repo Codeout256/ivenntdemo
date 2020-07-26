@@ -1,142 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
+  <script data-ionic="inject">
+    (function(w){var i=w.Ionic=w.Ionic||{};i.version='3.9.2';i.angular='5.2.11';i.staticDir='build/';})(window);
+  </script>
+  <meta charset="UTF-8">
   <title>SNAPP</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4e8ef7">
+
+  <!-- add to homescreen for ios -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <!-- cordova.js required for cordova apps (remove if not needed) -->
+  <script src="cordova.js"></script>
+
+  <!-- un-comment this code to enable service worker
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('service worker installed'))
+        .catch(err => console.error('Error', err));
     }
-    
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
-    
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-    
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-    
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height:auto;} 
-    }
-  </style>
+  </script>-->
+
+  <link href="build/main.css" rel="stylesheet">
+
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">SNAPP</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-  
-<div class="container-fluid text-center">    
-  <div class="row content">
-    <div class="col-sm-2 sidenav">
-    </div>
-    <div class="col-sm-8 text-left"> 
-      <h1>Welcome to SNAPP</h1>
-      <p>Fiorize your sketches without writing any code</p>
-      <hr>
-        <label class="cameraButton">Take a snap
-  <input type="file" id="mypic" accept="image/*" capture="camera">
-  <canvas></canvas>
-  </label>
-  <br>
-  <script>
-  var input = document.querySelector('input[type=file]'); // see Example 4
-  input.onchange = function () {
-    var file = input.files[0];
-    upload(file);
-    drawOnCanvas(file);   // see Example 6
-    //displayAsImage(file); // see Example 7
-  };
- 
-  function upload(file) {
-    var form = new FormData(),
-        xhr = new XMLHttpRequest();
- 
-    form.append('file', file);
-    xhr.open('post', 'http://localhost:5000/uploader', true);
-    xhr.send(form);
-  }
- 
-  function drawOnCanvas(file) {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      var dataURL = e.target.result,
-          c = document.querySelector('canvas'), // see Example 4
-          ctx = c.getContext('2d'),
-          img = new Image();
-          window.location = "http://13.234.114.45/deploy.html";
- 
-      img.onload = function() {
-        c.width = img.width;
-        c.height = img.height;
-        ctx.drawImage(img, 0, 0);
-      };
- 
-      img.src = dataURL;
-    };
- 
-    reader.readAsDataURL(file);
-  }
- 
-  function displayAsImage(file) {
-    var imgURL = URL.createObjectURL(file),
-        img = document.createElement('img');
- 
-    img.onload = function() {
-      URL.revokeObjectURL(imgURL);
-    };
- 
-    img.src = imgURL;
-    document.body.appendChild(img);
-  }
-  </script>
-      
-    </div>
-    <div class="col-sm-2 sidenav">
-    </div>
-  </div>
-</div>
+  <!-- Ionic's root component and where the app will load -->
+  <ion-app></ion-app>
 
-<footer class="container-fluid text-center">
-  <p></p>
-</footer>
+  <!-- The polyfills js is generated during the build process -->
+  <script src="build/polyfills.js"></script>
+
+  <!-- The vendor js is generated during the build process
+       It contains all of the dependencies in node_modules -->
+  <script src="build/vendor.js"></script>
+
+  <!-- The main bundle js is generated during the build process -->
+  <script src="build/main.js"></script>
 
 </body>
 </html>
